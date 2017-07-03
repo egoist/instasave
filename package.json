@@ -1,0 +1,36 @@
+{
+  "private": true,
+  "name": "instasave",
+  "productName": "InstaSave",
+  "description": "Download instagram photots.",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "poi",
+    "build": "poi build",
+    "report": "poi build --bundle-report",
+    "serve": "serve dist --single"
+  },
+  "babel": {
+    "presets": [
+      "vue-app"
+    ]
+  },
+  "author": {
+    "name": "EGOIST",
+    "email": "0x142857@gmail.com"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "normalize.css": "^7.0.0",
+    "object-assign": "^4.1.1",
+    "promise-polyfill": "^6.0.2"
+  },
+  "devDependencies": {
+    "poi": "next",
+    "poi-preset-bundle-report": "^2.0.0",
+    "serve": "^6.0.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1"
+  }
+}
