@@ -1,6 +1,6 @@
 const path = require('path')
 const pkg = require('./package')
-
+console.log(pkg.description)
 module.exports = {
   entry: [
     'src/polyfills.js',
@@ -8,7 +8,7 @@ module.exports = {
   ],
   html: {
     title: pkg.productName,
-    description: pkg.descrption,
+    description: pkg.description,
     template: path.join(__dirname, 'index.ejs')
   },
   postcss: {
