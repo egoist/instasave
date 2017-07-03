@@ -21,6 +21,9 @@
         <button :disabled="!url" type="button" class="button-download" @click="downloadImage">{{ downloading ? 'Downloading...' : 'Download' }}</button>
       </div>
     </div>
+    <footer class="footer">
+      {{ year }} &copy; <a href="https://github.com/egoist/donate">EGOIST</a>
+    </footer>
   </div>
 </template>
 
@@ -40,6 +43,7 @@ export default {
   name: 'app',
   data() {
     return {
+      year: new Date().getFullYear(),
       url: '',
       image: null,
       error: null,
