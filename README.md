@@ -1,4 +1,4 @@
-# instasave
+# Insta Save
 
 > Download instagram photots.
 
