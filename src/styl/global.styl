@@ -10,3 +10,22 @@ body
   margin: 0 auto
   text-align: center
   padding: 0 10px
+
+
+[class*="button-"]
+  border-radius: 33px
+  padding: 15px 0
+  width: 240px
+  border: none
+  font-size: 1.4rem
+  cursor: pointer
+  color: white
+  outline: none
+  &[disabled]
+    cursor: not-allowed
+
+.button-preview
+  background: linear-gradient(to right, #eaac76, #f57e46, #FF5722, #c1493d)
+
+.button-download
+  background: linear-gradient(to right, #00BCD4, #03A9F4, #6a78c5, #5165d6)

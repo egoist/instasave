@@ -10,12 +10,15 @@
     <div class="error" v-if="error">{{ error }}</div>
     <div class="preview" v-if="image">
       <img :src="image.url" :alt="image.desc">
-      <blockquote>{{ image.desc }}</blockquote>
-      <blockquote>-- by <a :href="`https://www.instagram.com/${image.author}/`" target="_blank">{{ image.author }}</a></blockquote>
+      <p>{{ image.desc }}</p>
+      <p>-- by <a :href="`https://www.instagram.com/${image.author}/`" target="_blank">{{ image.author }}</a></p>
     </div>
     <div class="actions">
       <div class="action">
-        <button :disabled="!url" type="button" class="button-preview" @click="fetchImage">{{ fetching ? 'Fetching...' : 'Preview' }}</button>
+        <button :disabled="!url" type="button" class="button-preview" @click="previewImage">{{ fetching ? 'Fetching...' : 'Preview' }}</button>
+      </div>
+      <div class="action">
+        <button :disabled="!url" type="button" class="button-download" @click="downloadImage">{{ downloading ? 'Downloading...' : 'Download' }}</button>
       </div>
     </div>
   </div>
@@ -25,6 +28,13 @@
 import axios from 'axios'
 import gh from 'vue-github-badge'
 import qs from 'query-string'
+import download from 'downloadjs'
+
+function getOriginalImage(url) {
+  return url
+    .replace(/\/sh0.08\//, '/')
+    .replace(/\/[a-z]\d{3}x\d{3}\//, '/')
+}
 
 export default {
   name: 'app',
@@ -33,14 +43,15 @@ export default {
       url: '',
       image: null,
       error: null,
-      fetching: false
+      fetching: false,
+      downloading: false
     }
   },
   created() {
     const query = qs.parse(window.location.hash)
     if (query.url) {
       this.url = query.url
-      this.fetchImage()
+      this.previewImage()
     }
   },
   methods: {
@@ -55,31 +66,41 @@ export default {
       query.url = this.url
       window.location.hash = qs.stringify(query)
     },
-    async fetchImage() {
-      const url = this.url.trim()
-      if (!url || this.fetching) return
-
-      this.fetching = true
+    async fetchImage(url) {
       try {
         const res = await axios.get(`https://instasave-api.now.sh/embed?url=${url}`)
           .then(res => res.data)
-        this.image = {
-          url: res.thumbnail_url
-          .replace(/\/sh0.08\//, '/')
-          .replace(/\/[a-z]\d{3}x\d{3}\//, '/'),
+        this.error = null
+        return {
+          url: getOriginalImage(res.thumbnail_url),
           author: res.author_name,
           desc: res.title
         }
-        this.error = null
       } catch (err) {
-        this.image = null
         if (err.response) {
           this.error = err.response.data
         } else {
           this.error = err.message
         }
+        return null
       }
+    },
+    async previewImage() {
+      const url = this.url.trim()
+      if (!url || this.fetching) return
+
+      this.fetching = true
+      this.image = await this.fetchImage(url)
       this.fetching = false
+    },
+    async downloadImage() {
+      const url = this.url.trim()
+      if (!url || this.downloading) return
+
+      this.downloading = true
+      const res = await this.fetchImage(url)
+      download(res.url)
+      this.downloading = false
     }
   },
   components: {
@@ -116,19 +137,6 @@ export default {
   .actions
     margin: 20px 0
 
-  .button-preview
-    border-radius: 33px
-    padding: 15px 0
-    width: 240px
-    border: none
-    font-size: 1.4rem
-    cursor: pointer
-    color: white
-    outline: none
-    background: linear-gradient(to right, #eaac76, #f57e46, #FF5722, #c1493d)
-    &[disabled]
-      cursor: not-allowed
-
 .preview
   margin-top: 20px
   img
@@ -143,4 +151,16 @@ export default {
   border-radius: 4px
   white-space: pre
   overflow: auto
+
+.actions
+  display: flex
+  align-items: center
+  justify-content: center
+
+.action
+  padding: 10px
+
+@media screen and (max-width: 768px)
+  .actions
+    flex-direction: column
 </style>

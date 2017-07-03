@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "downloadjs": "^1.4.7",
     "normalize.css": "^7.0.0",
     "object-assign": "^4.1.1",
     "promise-polyfill": "^6.0.2",
