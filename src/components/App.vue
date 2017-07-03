@@ -2,7 +2,7 @@
   <div id="app">
     <gh slug="egoist/instasave"></gh>
     <h1 class="app-title">Insta Save</h1>
-    <label class="url-label" for="instasave-url">Past your Instagram link here</label>
+    <label class="url-label" for="instasave-url">Paste your Instagram link here</label>
     <input
     @input="handleTyping"
     placeholder="https://www.instagram.com/p/BJmERWHgFEd/" @keydown.enter="fetchImage" class="url-input" id="instasave-url" v-model="url">
