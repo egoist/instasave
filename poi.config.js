@@ -17,6 +17,12 @@ module.exports = {
     ]
   },
   presets: [
-    require('poi-preset-bundle-report')()
+    require('poi-preset-bundle-report')(),
+    require('poi-preset-offline')({
+      ServiceWorker: {
+        events: true
+      },
+      AppCache: false
+    })
   ]
 }

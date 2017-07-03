@@ -38,8 +38,10 @@
   },
   "devDependencies": {
     "gh-pages": "^1.0.0",
+    "offline-plugin": "4.7.0",
     "poi": "next",
     "poi-preset-bundle-report": "^2.0.0",
+    "poi-preset-offline": "^9.0.0",
     "serve": "^6.0.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1"
