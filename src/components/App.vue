@@ -7,8 +7,10 @@
     @input="handleTyping"
     placeholder="https://www.instagram.com/p/BJmERWHgFEd/" @keydown.enter="fetchImage" class="url-input" id="instasave-url" v-model="url">
     <div class="error" v-if="error">{{ error }}</div>
-    <div class="preview">
-      <img v-if="image" :src="image" alt="">
+    <div class="preview" v-if="image">
+      <img :src="image.url" :alt="image.desc">
+      <blockquote>{{ image.desc }}</blockquote>
+      <blockquote>-- by <a :href="`https://www.instagram.com/${image.author}/`" target="_blank">{{ image.author }}</a></blockquote>
     </div>
     <div class="actions">
       <div class="action">
@@ -49,9 +51,13 @@ export default {
       try {
         const res = await axios.get(`https://instasave-api.now.sh/embed?url=${url}`)
           .then(res => res.data)
-        this.image = res.thumbnail_url
+        this.image = {
+          url: res.thumbnail_url
           .replace(/\/sh0.08\//, '/')
-          .replace(/\/[a-z]\d{3}x\d{3}\//, '/')
+          .replace(/\/[a-z]\d{3}x\d{3}\//, '/'),
+          author: res.author_name,
+          desc: res.title
+        }
         this.error = null
       } catch (err) {
         this.image = null
