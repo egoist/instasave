@@ -26,7 +26,8 @@
     "axios": "^0.16.2",
     "normalize.css": "^7.0.0",
     "object-assign": "^4.1.1",
-    "promise-polyfill": "^6.0.2"
+    "promise-polyfill": "^6.0.2",
+    "vue-github-badge": "^1.0.1"
   },
   "devDependencies": {
     "gh-pages": "^1.0.0",

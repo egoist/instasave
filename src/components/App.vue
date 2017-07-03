@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <h1 class="app-title">InstaSave</h1>
+    <gh slug="egoist/instasave"></gh>
+    <h1 class="app-title">Insta Save</h1>
     <label class="url-label" for="instasave-url">Past your Instagram link here</label>
     <input
     @input="handleTyping"
@@ -19,6 +20,7 @@
 
 <script>
 import axios from 'axios'
+import gh from 'vue-github-badge'
 
 export default {
   name: 'app',
@@ -61,6 +63,9 @@ export default {
       }
       this.fetching = false
     }
+  },
+  components: {
+    gh
   }
 }
 </script>
