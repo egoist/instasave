@@ -6,7 +6,7 @@
     <input
     autofocus
     @input="handleTyping"
-    placeholder="https://www.instagram.com/p/BJmERWHgFEd/" @keydown.enter="fetchImage" class="url-input" id="instasave-url" v-model="url">
+    placeholder="https://www.instagram.com/p/BJmERWHgFEd/" @keydown.enter="previewImage" class="url-input" id="instasave-url" v-model="url">
     <div class="error" v-if="error">{{ error }}</div>
     <div class="preview" v-if="image">
       <img :src="image.url" :alt="image.desc">
