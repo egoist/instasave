@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <gh slug="egoist/instasave"></gh>
-    <h1 class="app-title">Insta Save</h1>
+    <h1 class="app-title">InstaSave</h1>
     <label class="url-label" for="instasave-url">Paste your Instagram link here</label>
     <input
     @input="handleTyping"
@@ -51,7 +51,7 @@ export default {
           .then(res => res.data)
         this.image = res.thumbnail_url
           .replace(/\/sh0.08\//, '/')
-          .replace(/\/p\d{3}x\d{3}\//, '/')
+          .replace(/\/[a-z]\d{3}x\d{3}\//, '/')
         this.error = null
       } catch (err) {
         this.image = null

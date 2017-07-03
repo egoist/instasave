@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "instasave",
-  "productName": "Insta Save",
+  "productName": "InstaSave",
   "description": "Download instagram photots.",
   "version": "0.0.0",
   "license": "MIT",
