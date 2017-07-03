@@ -15,7 +15,7 @@
   },
   "babel": {
     "presets": [
-      "vue-app"
+      ["vue-app", {"useBuiltIns": true}]
     ]
   },
   "author": {
