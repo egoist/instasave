@@ -15,7 +15,12 @@
   },
   "babel": {
     "presets": [
-      ["vue-app", {"useBuiltIns": true}]
+      [
+        "vue-app",
+        {
+          "useBuiltIns": true
+        }
+      ]
     ]
   },
   "author": {
@@ -27,6 +32,7 @@
     "normalize.css": "^7.0.0",
     "object-assign": "^4.1.1",
     "promise-polyfill": "^6.0.2",
+    "query-string": "^4.3.4",
     "vue-github-badge": "^1.0.1"
   },
   "devDependencies": {

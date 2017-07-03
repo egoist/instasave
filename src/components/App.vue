@@ -24,6 +24,7 @@
 <script>
 import axios from 'axios'
 import gh from 'vue-github-badge'
+import qs from 'query-string'
 
 export default {
   name: 'app',
@@ -35,6 +36,13 @@ export default {
       fetching: false
     }
   },
+  created() {
+    const query = qs.parse(window.location.hash)
+    if (query.url) {
+      this.url = query.url
+      this.fetchImage()
+    }
+  },
   methods: {
     handleTyping() {
       if (this.error) {
@@ -43,6 +51,9 @@ export default {
       if (this.image) {
         this.image = null
       }
+      const query = qs.parse(window.location.hash)
+      query.url = this.url
+      window.location.hash = qs.stringify(query)
     },
     async fetchImage() {
       const url = this.url.trim()
