@@ -1,6 +1,6 @@
 const path = require('path')
 const pkg = require('./package')
-console.log(pkg.description)
+
 module.exports = {
   entry: [
     'src/polyfills.js',
