@@ -1,4 +1,4 @@
-# InstaSave
+# InstaSave <sup>![version badge](https://v.egoist.moe/gh/egoist/instasave.svg)</sup>
 
 > Download instagram photots.
 
