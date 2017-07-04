@@ -2,7 +2,7 @@
 
 > Download instagram photots.
 
-Try this https://instasave.egoistian.com/#url=https://instagram.com/p/BV7c1jNAgWi/ (nsfw :D)
+Try this https://instasave.egoist.moe/#url=https://instagram.com/p/BV7c1jNAgWi/ (nsfw :D)
 
 ## Commands
 
