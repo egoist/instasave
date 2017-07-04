@@ -78,7 +78,8 @@ export default {
         return {
           url: getOriginalImage(res.thumbnail_url),
           author: res.author_name,
-          desc: res.title
+          desc: res.title,
+          media_id: res.media_id
         }
       } catch (err) {
         if (err.response) {
@@ -102,8 +103,14 @@ export default {
       if (!url || this.downloading) return
 
       this.downloading = true
-      const res = await this.fetchImage(url)
-      download(res.url)
+      const file_name = `${res.author}-${res.media_id}.jpg`
+      const dl = await axios({
+        method:'get',
+        url:res.url,
+        responseType:'blob'
+      }).then(function(response) {
+          download(response.data, file_name, 'image/jpeg')
+      })
       this.downloading = false
     }
   },
