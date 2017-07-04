@@ -104,7 +104,6 @@ export default {
 
       this.downloading = true
       const res = await this.fetchImage(url)
-      const file_name = `${res.author}-${res.media_id}.jpg`
       const dl = await axios({
         method:'get',
         url:res.url,
