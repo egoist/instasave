@@ -62,6 +62,7 @@ import axios from 'axios'
 import { parse as parseUrl } from 'url'
 import path from 'path'
 import qs from 'querystring'
+import fetchData from './fetchData'
 
 export default {
   data() {
@@ -86,8 +87,7 @@ export default {
       this.error = null
       if (!this.url) return
       this.submitting = true
-      const { data } = await axios.get(`https://dinsta.egoist.rocks/resources?url=${this.url}`)
-
+      const data = await fetchData(this.url)
       this.submitting = false
 
       if (data.error) {
