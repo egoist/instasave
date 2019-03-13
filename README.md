@@ -1,1 +1,1 @@
-Live at https://instasave.egoist.rocks
+Live at https://instasave.egoist.sh as PWA.
