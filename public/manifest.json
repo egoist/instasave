@@ -1,5 +1,6 @@
 {
   "short_name": "InstaSave",
+  "name": "InstaSave",
   "icons": [
     {
       "src": "/img/icons/android-chrome-192x192.png",
