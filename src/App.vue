@@ -58,11 +58,11 @@
 </template>
 
 <script>
-import axios from 'axios'
-import { parse as parseUrl } from 'url'
-import path from 'path'
-import qs from 'querystring'
-import fetchData from './fetchData'
+import axios from "axios"
+import { parse as parseUrl } from "url"
+import path from "path"
+import qs from "querystring"
+import fetchData from "./fetchData"
 
 export default {
   data() {
@@ -72,13 +72,13 @@ export default {
       result: [],
       submitting: false,
       error: null,
-      example: 'https://www.instagram.com/p/BlgGWL1HD1P/'
+      example: "https://www.instagram.com/p/BlgGWL1HD1P/",
     }
   },
 
   methods: {
     reset() {
-      this.url = ''
+      this.url = ""
       this.error = null
       this.result = []
     },
@@ -93,9 +93,9 @@ export default {
       if (data.error) {
         this.error = data.error
       } else {
-        this.result = data.map(item => ({
+        this.result = data.map((item) => ({
           ...item,
-          progress: null
+          progress: null,
         }))
       }
     },
@@ -103,36 +103,39 @@ export default {
     async download(item) {
       const resource = item.video_url || item.display_url
       const res = await axios({
-        method: 'GET',
-        responseType: 'blob',
+        method: "GET",
+        responseType: "blob",
         url: resource,
-        onDownloadProgress: e => {
-          item.progress = Math.round(e.loaded / e.total * 100)
+        onDownloadProgress: (e) => {
+          item.progress = Math.round((e.loaded / e.total) * 100)
           if (item.progress === 100) {
             item.progress = null
           }
-        }
+        },
       })
       const url = window.URL.createObjectURL(new Blob([res.data]))
-      const link = document.createElement('a')
+      const link = document.createElement("a")
       link.href = url
-      link.setAttribute('download', path.basename(parseUrl(resource).pathname))
+      link.setAttribute("download", path.basename(parseUrl(resource).pathname))
       link.click()
     },
 
     applyExample() {
       this.url = this.example
       this.submit()
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style src="grid.css/grid.min.css"></style>
+<style src="grid.css/grid.min.css">
+</style>
 
 <style>
 body {
-  font: 14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font: 14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
@@ -164,7 +167,7 @@ h1 {
   margin-left: 10px;
   font-size: 2.4rem;
   font-weight: 500;
-  opacity: .65;
+  opacity: 0.65;
   color: white;
 }
 
@@ -178,9 +181,9 @@ video {
 }
 
 header {
-  background-color: #4788C7;
+  background-color: #4788c7;
   color: white;
-  padding: 50px 0;
+  padding: 100px 0;
 }
 
 main {
@@ -201,25 +204,36 @@ main {
 }
 
 .input {
-  border: none;
+  border: 1px solid #e2e2e2;
   outline: none;
-  padding: 8px 12px;
+  padding: 10px 12px;
   width: 70%;
-  background: #f0f0f0;
-  font-size: 1rem;
+  background: transparent;
+  font-size: 1.2rem;
+  border-radius: 4px;
 }
 
 .input:focus {
-  background: #f9f9f9;
+  box-shadow: 0 0 0 0.2rem rgba(24, 144, 255, 0.6);
+  border-color: rgba(0, 0, 0, 0.2);
 }
 
 .submit {
-  border: none;
+  border: 1px solid #1890ff;
   padding: 8px 12px;
+  border-radius: 4px;
   width: 30%;
-  background-color: #e2e2e2;
+  background-color: #4788c7;
   font-size: 1rem;
   outline: none;
+  margin-left: 10px;
+  cursor: pointer;
+  box-shadow: 0 0.2rem 0 rgba(0, 0, 0, 0.05);
+  color: white;
+}
+
+.submit:focus {
+  box-shadow: 0 0 0 0.3rem rgba(24, 144, 255, 0.3);
 }
 
 footer {
@@ -247,8 +261,9 @@ footer a {
 }
 
 .example span:hover {
-  opacity: .75;
+  opacity: 0.75;
 }
 </style>
 
-<style src="./css/button.css"></style>
+<style src="./css/button.css">
+</style>
